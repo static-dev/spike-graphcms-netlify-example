@@ -1,4 +1,15 @@
 extends(src='layout.sgr')
   block(name='content')
-    h2 Vinylbase
-    p {{{ JSON.stringify(item) }}}
+    .header-container
+      header
+        h1 {{ item.title }}
+        h2 Tracklist
+      .pageImage
+        img.roundImage(src='https://media.graphcms.com/resize=w:80,h:80,fit:crop/{{ item.cover.handle }}')
+
+    section
+        ul
+          each(loop='track in item.tracks')
+            li.track
+              span {{ track.title }}
+              span {{ track.length }}

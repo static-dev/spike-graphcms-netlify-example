@@ -1,4 +1,20 @@
 extends(src='layout.sgr')
   block(name='content')
-    h2 Vinylbase
-    p {{{ JSON.stringify(item) }}}
+    .header-container
+      header
+        h1 {{ item.title }}
+        h2 {{ item.record.title }}
+      .pageImage
+        img.roundImage(src='https://media.graphcms.com/resize=w:80,h:80,fit:crop/{{ item.record.cover.handle }}')
+
+    section
+      article
+        .star-wrapper {{ item.rating }}
+        .markdown {{{ md(item.review) }}}
+        h2 The artist:
+        ul
+          li
+            a(href='/artist/{{ item.record.artist.slug }}')
+              .card
+                img(src='https://media.graphcms.com/resize=w:140,h:140,fit:crop/{{ item.record.artist.picture.handle }}')
+                .title {{ item.record.artist.name }}

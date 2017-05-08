@@ -3,8 +3,10 @@ const cssStandards = require('spike-css-standards')
 const jsStandards = require('spike-js-standards')
 const Records = require('spike-records')
 const path = require('path')
+const MarkdownIt = require('markdown-it')
 
-const locals = {}
+const md = new MarkdownIt()
+const locals = { md: md.render.bind(md) }
 const apiUrl = 'https://api.graphcms.com/simple/v1/vinylbase'
 
 module.exports = {
@@ -29,8 +31,8 @@ module.exports = {
             allReviews {
               title, slug, rating, review,
               record {
-                title, cover { id },
-                artist { name, slug, picture { id } }
+                title, cover { handle },
+                artist { name, slug, picture { handle } }
               }
             }
           }`
@@ -38,7 +40,7 @@ module.exports = {
         transform: (res) => res.data.allReviews,
         template: {
           path: 'views/templates/review.sgr',
-          output: (review) => `reviews/${review.slug}.html`
+          output: (review) => `review/${review.slug}.html`
         }
       },
       artists: {
@@ -46,15 +48,15 @@ module.exports = {
           url: apiUrl,
           query: `{
             allArtists {
-              name, slug, bio, picture { id },
-              records { title, slug, cover { id } }
+              name, slug, bio, picture { handle },
+              records { title, slug, cover { handle } }
             }
           }`
         },
         transform: (res) => res.data.allArtists,
         template: {
           path: 'views/templates/artist.sgr',
-          output: (artist) => `artists/${artist.slug}.html`
+          output: (artist) => `artist/${artist.slug}.html`
         }
       },
       records: {
@@ -62,7 +64,7 @@ module.exports = {
           url: apiUrl,
           query: `{
             allRecords {
-              title, slug, cover { id },
+              title, slug, cover { handle },
               tracks { title, length }
             }
           }`
@@ -70,7 +72,7 @@ module.exports = {
         transform: (res) => res.data.allRecords,
         template: {
           path: 'views/templates/record.sgr',
-          output: (record) => `records/${record.slug}.html`
+          output: (record) => `record/${record.slug}.html`
         }
       }
     })

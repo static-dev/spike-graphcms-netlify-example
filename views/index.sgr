@@ -1,4 +1,17 @@
 extends(src='layout.sgr')
   block(name='content')
-    h2 Vinylbase
-    p {{{ JSON.stringify(reviews) }}}
+    .header-container
+      header
+        h1 Vinylbase
+        h2 The best music reviews on the interwebs
+      .pageImage
+        img(src='/img/records.svg')
+
+    section
+      ul
+        each(loop='review in reviews')
+          li
+            a(href='/review/{{ review.slug }}')
+              .card
+                .title {{ review.title }}
+                .star-wrapper {{ review.rating }}

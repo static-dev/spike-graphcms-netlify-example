@@ -8,15 +8,21 @@ html
       meta(name='author' content='static-dev')
       meta(name='viewport' content='width=device-width, initial-scale=1')
       title Vinylbase
-      link(rel='stylesheet' href='css/index.css')
+      link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet')
+      link(rel='stylesheet' href='/css/index.css')
 
   body
     main(role='main')
-      header
-        a(href='/') Reviews
-        a(href='/artists') Artists
-        a(href='/records') Records
+      .nav-container
+        nav
+          a(href='/') Reviews
+          a(href='/artists') Artists
+          a(href='/records') Records
+
+
       block(name='content')
 
+      footer(mdi) A [GraphCMS](https://graphcms.com) example
+
     block(name='javascript')
-      script(src='js/main.js' defer)
+      script(src='/js/main.js' defer)
