@@ -7,15 +7,15 @@ html
       meta(name='description' content='')
       meta(name='author' content='static-dev')
       meta(name='viewport' content='width=device-width, initial-scale=1')
-
-    block(name='title')
-      title Title of Your Site
-
-    block(name='stylesheets')
+      title Vinylbase
       link(rel='stylesheet' href='css/index.css')
 
   body
-    main(role='main' id='{{ pageId }}')
+    main(role='main')
+      header
+        a(href='/') Reviews
+        a(href='/artists') Artists
+        a(href='/records') Records
       block(name='content')
 
     block(name='javascript')

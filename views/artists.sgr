@@ -1,4 +1,4 @@
 extends(src='layout.sgr')
   block(name='content')
     h2 Vinylbase
-    p {{{ JSON.stringify(reviews) }}}
+    p {{{ JSON.stringify(artists) }}}

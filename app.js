@@ -17,18 +17,38 @@ module.exports = {
   plugins: [
     new Records({
       addDataTo: locals,
+      reviews: {
+        graphql: {
+          url: 'https://api.graphcms.com/simple/v1/vinylbase',
+          query: `{
+            allReviews {
+              title, slug, rating, review,
+              record {
+                title, cover { id },
+                artist { name, slug, picture { id } }
+              }
+            }
+          }`
+        }
+      },
+      artists: {
+        graphql: {
+          url: 'https://api.graphcms.com/simple/v1/vinylbase',
+          query: `{
+            allArtists {
+              name, bio, picture { id },
+              records { title, slug, cover { id } }
+            }
+          }`
+        }
+      },
       records: {
         graphql: {
           url: 'https://api.graphcms.com/simple/v1/vinylbase',
-          query: `query {
+          query: `{
             allRecords {
-              title,
-              tracks {
-                title
-              },
-              artist {
-                name
-              }
+              title, slug, cover { id },
+              tracks { title, length }
             }
           }`
         }
