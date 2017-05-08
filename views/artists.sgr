@@ -11,5 +11,5 @@ extends(src='layout.sgr')
           li
             a(href='/artist/{{ artist.slug }}')
               .g-card
-                img(src='https://media.graphcms.com/resize=w:140,h:140,fit:crop/{{ artist.picture.handle }}')
+                img(src='{{ mediaUrl }}/resize=w:140,h:140,fit:crop/{{ artist.picture.handle }}')
                 .title {{ artist.name }}
