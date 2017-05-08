@@ -4,25 +4,20 @@ html
     block(name='meta')
       meta(charset='utf-8')
       meta(http-equiv='X-UA-Compatible' content='IE=edge')
-      meta(name='description' content='')
-      meta(name='author' content='static-dev')
+      meta(name='description' content='An example project using spike, graphcms, and netlify')
+      meta(name='author' content='Jeff Escalante')
       meta(name='viewport' content='width=device-width, initial-scale=1')
       title Vinylbase
       link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet')
       link(rel='stylesheet' href='/css/index.css')
 
   body
-    main(role='main')
-      .nav-container
-        nav
-          a(href='/') Reviews
-          a(href='/artists') Artists
-          a(href='/records') Records
+    nav
+      .wrap
+        a(href='/') Reviews
+        a(href='/artists') Artists
+        a(href='/records') Records
 
+    block(name='content')
 
-      block(name='content')
-
-      footer(mdi) A [GraphCMS](https://graphcms.com) example
-
-    block(name='javascript')
-      script(src='/js/main.js' defer)
+    footer(mdi) A [GraphCMS](https://graphcms.com) &amp; [Spike](https://spike.cf) example

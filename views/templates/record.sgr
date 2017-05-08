@@ -1,15 +1,14 @@
 extends(src='layout.sgr')
   block(name='content')
-    .header-container
-      header
-        h1 {{ item.title }}
-        h2 Tracklist
+    header
+      h1 {{ item.title }}
+      h2 Tracklist
       .pageImage
-        img.roundImage(src='https://media.graphcms.com/resize=w:80,h:80,fit:crop/{{ item.cover.handle }}')
+        img.roundImage(src='{{ mediaUrl }}/resize=w:80,h:80,fit:crop/{{ item.cover.handle }}')
 
     section
         ul
           each(loop='track in item.tracks')
-            li.track
+            li.g-track
               span {{ track.title }}
               span {{ track.length }}

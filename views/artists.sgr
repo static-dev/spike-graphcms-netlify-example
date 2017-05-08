@@ -1,8 +1,7 @@
 extends(src='layout.sgr')
   block(name='content')
-    .header-container
-      header
-        h1 All Artists
+    header
+      h1 All Artists
       .pageImage
         img(src='/img/microphone.svg')
 
@@ -11,6 +10,6 @@ extends(src='layout.sgr')
         each(loop='artist in artists')
           li
             a(href='/artist/{{ artist.slug }}')
-              .card
+              .g-card
                 img(src='https://media.graphcms.com/resize=w:140,h:140,fit:crop/{{ artist.picture.handle }}')
                 .title {{ artist.name }}

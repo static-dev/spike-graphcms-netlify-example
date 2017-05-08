@@ -1,8 +1,7 @@
 extends(src='layout.sgr')
   block(name='content')
-    .header-container
-      header
-        h1 All Records
+    header
+      h1 All Records
       .pageImage
         img(src='/img/records.svg')
 
@@ -11,6 +10,6 @@ extends(src='layout.sgr')
         each(loop='record in records')
           li
             a(href='/record/{{ record.slug }}')
-              .card
-                img(src='https://media.graphcms.com/resize=w:140,h:140,fit:crop/{{ record.cover.handle }}')
+              .g-card
+                img(src='{{ mediaUrl }}/resize=w:140,h:140,fit:crop/{{ record.cover.handle }}')
                 .title {{ record.title }}

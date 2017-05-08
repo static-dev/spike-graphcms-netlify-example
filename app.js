@@ -6,14 +6,14 @@ const path = require('path')
 const MarkdownIt = require('markdown-it')
 
 const md = new MarkdownIt()
-const locals = { md: md.render.bind(md) }
+const locals = {
+  md: md.render.bind(md),
+  mediaUrl: 'https://media.graphcms.com'
+}
 const apiUrl = 'https://api.graphcms.com/simple/v1/vinylbase'
 
 module.exports = {
-  matchers: {
-    html: '*(**/)*.sgr',
-    css: '*(**/)*.sss'
-  },
+  matchers: { html: '*(**/)*.sgr', css: '*(**/)*.sss' },
   ignore: ['**/layout.sgr', '**/_*', '**/.*', 'readme.md', 'yarn.lock', 'views/templates/*.sgr'],
   reshape: htmlStandards({
     root: path.join(__dirname, 'views'),
