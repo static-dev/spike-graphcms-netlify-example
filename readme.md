@@ -1,5 +1,7 @@
 # graphcms-netlify-example
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/static-dev/spike-graphcms-netlify-example.svg)](https://greenkeeper.io/)
+
 example app using graphcms and netlify
 
 ## Setup
