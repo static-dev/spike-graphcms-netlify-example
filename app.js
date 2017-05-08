@@ -2,16 +2,21 @@ const htmlStandards = require('reshape-standard')
 const cssStandards = require('spike-css-standards')
 const jsStandards = require('spike-js-standards')
 const Records = require('spike-records')
+const path = require('path')
 
 const locals = {}
+const apiUrl = 'https://api.graphcms.com/simple/v1/vinylbase'
 
 module.exports = {
   matchers: {
     html: '*(**/)*.sgr',
     css: '*(**/)*.sss'
   },
-  ignore: ['**/layout.sgr', '**/_*', '**/.*', 'readme.md', 'yarn.lock'],
-  reshape: htmlStandards({ locals: (ctx) => locals }),
+  ignore: ['**/layout.sgr', '**/_*', '**/.*', 'readme.md', 'yarn.lock', 'views/templates/*.sgr'],
+  reshape: htmlStandards({
+    root: path.join(__dirname, 'views'),
+    locals: (ctx) => locals
+  }),
   postcss: cssStandards(),
   babel: jsStandards(),
   plugins: [
@@ -19,7 +24,7 @@ module.exports = {
       addDataTo: locals,
       reviews: {
         graphql: {
-          url: 'https://api.graphcms.com/simple/v1/vinylbase',
+          url: apiUrl,
           query: `{
             allReviews {
               title, slug, rating, review,
@@ -29,28 +34,43 @@ module.exports = {
               }
             }
           }`
+        },
+        transform: (res) => res.data.allReviews,
+        template: {
+          path: 'views/templates/review.sgr',
+          output: (review) => `reviews/${review.slug}.html`
         }
       },
       artists: {
         graphql: {
-          url: 'https://api.graphcms.com/simple/v1/vinylbase',
+          url: apiUrl,
           query: `{
             allArtists {
-              name, bio, picture { id },
+              name, slug, bio, picture { id },
               records { title, slug, cover { id } }
             }
           }`
+        },
+        transform: (res) => res.data.allArtists,
+        template: {
+          path: 'views/templates/artist.sgr',
+          output: (artist) => `artists/${artist.slug}.html`
         }
       },
       records: {
         graphql: {
-          url: 'https://api.graphcms.com/simple/v1/vinylbase',
+          url: apiUrl,
           query: `{
             allRecords {
               title, slug, cover { id },
               tracks { title, length }
             }
           }`
+        },
+        transform: (res) => res.data.allRecords,
+        template: {
+          path: 'views/templates/record.sgr',
+          output: (record) => `records/${record.slug}.html`
         }
       }
     })
