@@ -9,6 +9,7 @@
   "bugs": "https://github.com/static-dev/graphcms-netlify-example/issues",
   "dependencies": {
     "reshape-standard": "^1.0.0",
+    "spike": "^1.3.0",
     "spike-css-standards": "^1.0.0",
     "spike-js-standards": "^2.0.1",
     "spike-records": "^1.0.1",
